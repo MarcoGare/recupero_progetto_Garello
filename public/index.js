@@ -11,7 +11,7 @@ const createMiddleware = () => {
                 })
                     .then((response) => response.json())
                     .then((json) => {
-                        resolve(json); // risposta del server all'aggiunta
+                        resolve(json); 
                     })
             })
         },
@@ -20,7 +20,8 @@ const createMiddleware = () => {
                 fetch("/todo")
                     .then((response) => response.json())
                     .then((json) => {
-                        resolve(json); // risposta del server con la lista         
+                        console.log(json);
+                        resolve(json);        
                     })
             })
         },
@@ -56,9 +57,11 @@ const createMiddleware = () => {
 const createForm = (add) => {
     const inputInsert = document.querySelector("#inputInsert");
     const buttonInsert = document.querySelector("#buttonInsert");
+    const buttonData = document.querySelector("#inputData")
     buttonInsert.onclick = () => {
-        add(inputInsert.value);
+        add(inputInsert.value, buttonData.value);
         inputInsert.value = "";
+        buttonData.value = "";
     }
 }
 
@@ -67,6 +70,7 @@ const createList = () => {
     const template = `
                     <tr>                            
                         <td class="%COLOR">%TASK</td>
+                        <td> %DATA</td>
                         <td><button class="btn btn-success" id="COMPLETE_%ID" type="button">COMPLETA</button></td>                            
                         <td><button class="btn btn-danger" id="DELETE_%ID" type="button">ELIMINA</button></td>                                                    
                     </tr>
@@ -76,6 +80,7 @@ const createList = () => {
             let html = "";
             todos.forEach((todo) => {
                 let row = template.replace("COMPLETE_%ID", "COMPLETE_" + todo.id);
+                row = row.replace("%DATA",todo.data);
                 row = row.replace("DELETE_%ID", "DELETE_" + todo.id);
                 row = row.replace("%TASK", todo.name);
                 row = row.replace("%COLOR", todo.completed ? "text-success" : "text-primary");
@@ -110,10 +115,11 @@ const createBusinessLogic = (middleware, list) => {
         .then(() => reload());
     }
     return {
-        add: (task) => {
+        add: (task,data) => {
             const todo = {
                 name: task,
-                completed: false
+                completed: false,
+                data: data
             }
             middleware.send({ todo: todo })
                 .then(() => reload());

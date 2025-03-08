@@ -43,8 +43,7 @@ app.put("/todo/complete", (req, res) => {
     res.json({result: "Ok"});  
  })
 
-const server = http.createServer(app);
-
-server.listen(5500, () => {
-  console.log("- server running");
-});
+ const server=http.createServer(app);
+ server.listen(80, () => {
+     console.log("- Server in esecuzione su http://localhost:80");
+ });
