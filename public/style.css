@@ -1,0 +1,50 @@
+body {
+    background-color: #f8f9fa;
+}
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: white;
+}
+.row input, .row button {
+    margin: 5px;
+    padding: 10px;
+    border-radius: 8px;
+}
+.table {
+    margin-top: 20px;
+}
+.table th {
+    text-align: center;
+}
+.table td {
+    text-align: center;
+}
+button {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+#buttonInsert {
+    background-color: #28a745;
+    color: white;
+}
+#buttonInsert:hover {
+    background-color: #218838;
+}
+.complete-btn {
+    background-color: #007bff;
+    color: white;
+}
+.complete-btn:hover {
+    background-color: #0056b3;
+}
+.delete-btn {
+    background-color: #dc3545;
+    color: white;
+}
+.delete-btn:hover {
+    background-color: #c82333;
+}
